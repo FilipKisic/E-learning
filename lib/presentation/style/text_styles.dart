@@ -19,3 +19,13 @@ const snackbarTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   color: secondaryColor,
 );
+
+const cardTitleTextStyle = TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+);
+
+const progressBarTextStyle = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.bold,
+);

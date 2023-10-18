@@ -2,5 +2,6 @@
     "login": "Login",
     "username": "Username",
     "password": "Password",
-    "courses": "Courses"
+    "courses": "Courses",
+    "progress": "Progress"
 }

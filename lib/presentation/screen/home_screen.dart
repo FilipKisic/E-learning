@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_learning/di.dart';
 import 'package:flutter_e_learning/presentation/style/text_styles.dart';
+import 'package:flutter_e_learning/presentation/widget/course/course_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -28,13 +29,16 @@ class HomeScreen extends ConsumerWidget {
                 data: (courseList) => courseList.isEmpty
                     ? const Text("...")
                     : Expanded(
-                      child: ListView.builder(
-                          itemCount: courseList.length,
-                          itemBuilder: (context, index) => Card(
-                            child: Text(courseList[index].title),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: ListView.builder(
+                            itemCount: courseList.length,
+                            itemBuilder: (context, index) => CourseCard(
+                              course: courseList[index],
+                            ),
                           ),
                         ),
-                    ),
+                      ),
                 error: (error, _) => Center(child: Text(error.toString())),
                 loading: () => const CircularProgressIndicator.adaptive(),
               ),
