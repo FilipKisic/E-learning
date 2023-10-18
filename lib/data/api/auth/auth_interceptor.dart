@@ -8,9 +8,7 @@ class AuthInterceptor extends InterceptorsWrapper {
   @override
   void onRequest(final RequestOptions options, final RequestInterceptorHandler handler) async {
     final token = AccessToken.accessToken;
-    print("TOKEN: $token");
     if (token != null && token.isNotEmpty) {
-      print("About to send request");
       options.headers.addAll({
         HttpHeaders.authorizationHeader: 'Bearer $token',
       });

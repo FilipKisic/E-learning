@@ -3,5 +3,18 @@
     "username": "Korisničko ime",
     "password": "Lozinka",
     "courses": "Predmeti",
-    "progress": "Napredak"
+    "progress": "Napredak",
+    "addQuiz": "Novi kviz",
+    "quizTitle": "Naslov kviza",
+    "question": "Pitanje",
+    "firstOption": "Opcija #1",
+    "secondOption": "Opcija #2",
+    "thirdOption": "Opcija #3",
+    "correctAnswear": "Točan odgovor",
+    "next": "Sljedeće",
+    "addLecture": "Nova lekcija",
+    "title": "Naslov",
+    "description": "Opis",
+    "addCourse": "Novi predmet",
+    "create": "Kreiraj"
 }

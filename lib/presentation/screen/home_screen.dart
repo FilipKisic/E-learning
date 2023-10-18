@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_learning/core/routes/route_generator.dart';
 import 'package:flutter_e_learning/di.dart';
 import 'package:flutter_e_learning/presentation/style/text_styles.dart';
 import 'package:flutter_e_learning/presentation/widget/course/course_card.dart';
@@ -22,7 +23,10 @@ class HomeScreen extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(AppLocalizations.of(context)!.courses, style: titleTextStyle),
-                  const Icon(Icons.add_circle_rounded, size: 38),
+                  IconButton(
+                    icon: const Icon(Icons.add_circle_rounded, size: 38),
+                    onPressed: () => _redirectToNewQuizScreen(context),
+                  ),
                 ],
               ),
               courseListState.when(
@@ -48,4 +52,7 @@ class HomeScreen extends ConsumerWidget {
       ),
     );
   }
+
+  void _redirectToNewQuizScreen(BuildContext context) =>
+      Navigator.of(context).pushNamed(RouteGenerator.newQuizScreen);
 }

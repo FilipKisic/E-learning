@@ -3,5 +3,18 @@
     "username": "Username",
     "password": "Password",
     "courses": "Courses",
-    "progress": "Progress"
+    "progress": "Progress",
+    "addQuiz": "Add Quiz",
+    "quizTitle": "Quiz title",
+    "question": "Question",
+    "firstOption": "Option #1",
+    "secondOption": "Option #2",
+    "thirdOption": "Option #3",
+    "correctAnswear": "Correct answear",
+    "next": "Next",
+    "addLecture": "Add lecture",
+    "title": "Title",
+    "description": "Description",
+    "addCourse": "Add course",
+    "create": "Create"
 }
