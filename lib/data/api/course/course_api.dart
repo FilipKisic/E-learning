@@ -14,4 +14,7 @@ abstract class CourseApi {
 
   @POST("")
   Future<void> create(@Body() final CreateCourseDto createCourseDto);
+
+  @DELETE("/{id}")
+  Future<void> delete(@Path("id") final int id);
 }

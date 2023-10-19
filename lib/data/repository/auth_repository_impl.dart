@@ -11,7 +11,6 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> login(final String email, final String password) async {
     final authRequestDto = AuthRequestDto(username: email, password: password);
     final response = await api.login(authRequestDto);
-    print("RESPONSE: ${response.accessToken}");
     AccessToken.setAccessToken(response.accessToken);
   }
 }

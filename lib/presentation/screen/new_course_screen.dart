@@ -74,7 +74,7 @@ class NewCourseScreen extends HookConsumerWidget {
       lectures: [lecture],
     );
 
-    ref.read(courseProvider(1)).create(course);
+    ref.read(courseProvider(1)).create(course, 1);
 
     Navigator.of(context).popUntil((route) => route.isFirst);
   }

@@ -28,4 +28,7 @@ class CourseRepositoryImpl implements CourseRepository {
     final courseDto = courseToCreateCourseDtoMapper.convert(course);
     await api.create(courseDto);
   }
+  
+  @override
+  Future<void> delete(final int id) => api.delete(id);
 }

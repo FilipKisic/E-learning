@@ -12,7 +12,8 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final studentId = ref.watch(studentProvider.select((provider) => provider.currentStudentId));
-    final courseListState = ref.watch(courseProvider(studentId).select((provider) => provider.courseList))!;
+    final courseListState =
+        ref.watch(courseProvider(studentId).select((provider) => provider.courseList))!;
 
     return Scaffold(
       body: SafeArea(
@@ -41,6 +42,7 @@ class HomeScreen extends ConsumerWidget {
                             separatorBuilder: (_, index) => const SizedBox(height: 25),
                             itemBuilder: (context, index) => CourseCard(
                               course: courseList[index],
+                              onDelete: () => _deleteCourse(ref, courseList[index].id!),
                             ),
                           ),
                         ),
@@ -57,4 +59,8 @@ class HomeScreen extends ConsumerWidget {
 
   void _redirectToNewQuizScreen(BuildContext context) =>
       Navigator.of(context).pushNamed(RouteGenerator.newQuizScreen);
+
+  void _deleteCourse(WidgetRef ref, final int courseId) {
+    ref.read(courseProvider(1)).delete(courseId, 1);
+  }
 }

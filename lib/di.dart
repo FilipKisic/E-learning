@@ -13,6 +13,7 @@ import 'package:flutter_e_learning/domain/repository/auth_repository.dart';
 import 'package:flutter_e_learning/domain/repository/course_repository.dart';
 import 'package:flutter_e_learning/domain/usecase/authenitcate_user_use_case.dart';
 import 'package:flutter_e_learning/domain/usecase/create_course_use_case.dart';
+import 'package:flutter_e_learning/domain/usecase/delete_course_use_case.dart';
 import 'package:flutter_e_learning/domain/usecase/get_all_courses_use_case.dart';
 import 'package:flutter_e_learning/presentation/riverpod/course_provider.dart';
 import 'package:flutter_e_learning/presentation/riverpod/student_provider.dart';
@@ -77,6 +78,9 @@ final getAllCoursesUseCaseProvider = Provider<GetAllCoursesUseCase>(
 final createCourseUseCaseProvider = Provider<CreateCourseUseCase>(
     (ref) => CreateCourseUseCase(ref.watch(courseRepositoryProvider)));
 
+final deleteCourseUseCaseProvider = Provider<DeleteCourseUseCase>(
+    (ref) => DeleteCourseUseCase(ref.watch(courseRepositoryProvider)));
+
 // *********** PROVIDER *********** //
 final studentProvider = ChangeNotifierProvider<StudentProvider>(
   (ref) => StudentProvider(ref.read(authUseCaseProvider)),
@@ -86,6 +90,7 @@ final courseProvider = ChangeNotifierProvider.family<CourseProvider, int>(
   (ref, id) => CourseProvider(
     ref.watch(getAllCoursesUseCaseProvider),
     ref.watch(createCourseUseCaseProvider),
+    ref.watch(deleteCourseUseCaseProvider),
     id,
   ),
 );
