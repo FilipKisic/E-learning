@@ -1,13 +1,20 @@
+import 'package:flutter_e_learning/domain/entity/lecture.dart';
+
 class Course {
-  final int id;
+  final int? id;
   final String title;
   final String description;
-  final int progressPercentage;
+  final int? progressPercentage;
+  final List<Lecture>? lectures;
 
   const Course({
-    required this.id,
+    this.id,
     required this.title,
     required this.description,
-    required this.progressPercentage,
+    this.progressPercentage,
+    this.lectures,
   });
+
+  @override
+  String toString() => "$id, $title, $description, $progressPercentage, $lectures";
 }

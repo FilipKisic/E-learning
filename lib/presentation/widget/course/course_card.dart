@@ -31,7 +31,7 @@ class CourseCard extends StatelessWidget {
           const SizedBox(height: 5),
           Text(course.description),
           const SizedBox(height: 5),
-          ProgressBar(progressPercentage: course.progressPercentage),
+          ProgressBar(progressPercentage: course.progressPercentage!),
         ],
       ),
     );

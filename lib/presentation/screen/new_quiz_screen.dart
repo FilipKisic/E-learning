@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_learning/core/routes/route_generator.dart';
+import 'package:flutter_e_learning/domain/entity/question.dart';
+import 'package:flutter_e_learning/domain/entity/quiz.dart';
+import 'package:flutter_e_learning/presentation/screen/new_lecture_screen.dart';
 import 'package:flutter_e_learning/presentation/style/text_styles.dart';
 import 'package:flutter_e_learning/presentation/widget/custom_button.dart';
 import 'package:flutter_e_learning/presentation/widget/custom_text_field.dart';
@@ -67,7 +69,15 @@ class NewQuizScreen extends HookConsumerWidget {
                 width: double.infinity,
                 child: CustomButton(
                   text: AppLocalizations.of(context)!.next,
-                  onPressed: () => _redirectToNewLectureScreen(context),
+                  onPressed: () => _submitQuiz(
+                    context,
+                    titleController.text,
+                    questionController.text,
+                    firstOptionController.text,
+                    secondOptionController.text,
+                    thirdOptionController.text,
+                    correctAnswearController.text,
+                  ),
                 ),
               ),
             ],
@@ -77,6 +87,31 @@ class NewQuizScreen extends HookConsumerWidget {
     );
   }
 
-  void _redirectToNewLectureScreen(BuildContext context) =>
-      Navigator.of(context).pushNamed(RouteGenerator.newLectureScreen);
+  void _submitQuiz(
+    final BuildContext context,
+    final String title,
+    final String question,
+    final String firstOption,
+    final String secondOption,
+    final String thirdOption,
+    final String correctAnswear,
+  ) {
+    final newQuestion = Question(
+      question: question,
+      firstOption: firstOption,
+      secondOption: secondOption,
+      thirdOption: thirdOption,
+      correctAnswear: correctAnswear,
+    );
+    final quiz = Quiz(title: title, description: 'Generic description', questions: [newQuestion]);
+    _redirectToNewLectureScreen(context, quiz);
+  }
+
+  void _redirectToNewLectureScreen(BuildContext context, final Quiz quiz) =>
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => const NewLectureScreen(),
+          settings: RouteSettings(arguments: quiz),
+        ),
+      );
 }

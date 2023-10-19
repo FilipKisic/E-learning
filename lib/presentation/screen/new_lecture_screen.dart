@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_learning/core/routes/route_generator.dart';
+import 'package:flutter_e_learning/domain/entity/lecture.dart';
+import 'package:flutter_e_learning/domain/entity/quiz.dart';
+import 'package:flutter_e_learning/presentation/screen/new_course_screen.dart';
 import 'package:flutter_e_learning/presentation/style/text_styles.dart';
 import 'package:flutter_e_learning/presentation/widget/custom_button.dart';
 import 'package:flutter_e_learning/presentation/widget/custom_text_field.dart';
@@ -12,6 +14,8 @@ class NewLectureScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final quiz = ModalRoute.of(context)!.settings.arguments as Quiz;
+
     final titleController = useTextEditingController();
     final descriptionController = useTextEditingController();
 
@@ -41,7 +45,12 @@ class NewLectureScreen extends HookConsumerWidget {
                 width: double.infinity,
                 child: CustomButton(
                   text: AppLocalizations.of(context)!.next,
-                  onPressed: () => _redirectToNewCourseScreen(context),
+                  onPressed: () => _submitLecture(
+                    context,
+                    titleController.text,
+                    descriptionController.text,
+                    quiz,
+                  ),
                 ),
               ),
             ],
@@ -51,6 +60,17 @@ class NewLectureScreen extends HookConsumerWidget {
     );
   }
 
-  void _redirectToNewCourseScreen(BuildContext context) =>
-      Navigator.of(context).pushNamed(RouteGenerator.newCourseScreen);
+  void _submitLecture(
+      BuildContext context, final String title, final String description, final Quiz quiz) {
+    final lecture = Lecture(title: title, description: description, quizzes: [quiz]);
+    _redirectToNewCourseScreen(context, lecture);
+  }
+
+  void _redirectToNewCourseScreen(BuildContext context, final Lecture lecture) =>
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => const NewCourseScreen(),
+          settings: RouteSettings(arguments: lecture),
+        ),
+      );
 }

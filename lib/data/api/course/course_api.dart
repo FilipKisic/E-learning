@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_e_learning/data/model/course/create_course_dto.dart';
 import 'package:flutter_e_learning/data/model/course/get_course_dto.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -10,4 +11,7 @@ abstract class CourseApi {
 
   @GET("/all/{studentId}")
   Future<List<GetCourseDto>> getAll(@Path("studentId") final int studentId);
+
+  @POST("")
+  Future<void> create(@Body() final CreateCourseDto createCourseDto);
 }

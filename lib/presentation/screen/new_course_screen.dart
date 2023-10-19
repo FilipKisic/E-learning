@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_learning/di.dart';
+import 'package:flutter_e_learning/domain/entity/course.dart';
+import 'package:flutter_e_learning/domain/entity/lecture.dart';
 import 'package:flutter_e_learning/presentation/style/text_styles.dart';
 import 'package:flutter_e_learning/presentation/widget/custom_button.dart';
 import 'package:flutter_e_learning/presentation/widget/custom_text_field.dart';
@@ -11,6 +14,8 @@ class NewCourseScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final lecture = ModalRoute.of(context)!.settings.arguments as Lecture;
+
     final titleController = useTextEditingController();
     final descriptionController = useTextEditingController();
 
@@ -40,7 +45,13 @@ class NewCourseScreen extends HookConsumerWidget {
                 width: double.infinity,
                 child: CustomButton(
                   text: AppLocalizations.of(context)!.create,
-                  onPressed: () => _createCourse(context),
+                  onPressed: () => _createCourse(
+                    context,
+                    ref,
+                    titleController.text,
+                    descriptionController.text,
+                    lecture,
+                  ),
                 ),
               ),
             ],
@@ -50,6 +61,21 @@ class NewCourseScreen extends HookConsumerWidget {
     );
   }
 
-  void _createCourse(BuildContext context) =>
-      Navigator.of(context).popUntil((route) => route.isFirst);
+  void _createCourse(
+    BuildContext context,
+    WidgetRef ref,
+    final String title,
+    final String description,
+    final Lecture lecture,
+  ) {
+    final course = Course(
+      title: title,
+      description: description,
+      lectures: [lecture],
+    );
+
+    ref.read(courseProvider(1)).create(course);
+
+    Navigator.of(context).popUntil((route) => route.isFirst);
+  }
 }
