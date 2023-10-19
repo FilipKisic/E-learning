@@ -6,5 +6,5 @@ class GetAllCoursesUseCase {
 
   const GetAllCoursesUseCase(this.courseRepository);
 
-  Future<List<Course>> call() => courseRepository.getAll();
+  Future<List<Course>> call(final int studentId) => courseRepository.getAll(studentId);
 }

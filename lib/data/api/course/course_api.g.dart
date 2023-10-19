@@ -21,7 +21,7 @@ class _CourseApi implements CourseApi {
   String? baseUrl;
 
   @override
-  Future<List<GetCourseDto>> getAll() async {
+  Future<List<GetCourseDto>> getAll(int studentId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -34,7 +34,7 @@ class _CourseApi implements CourseApi {
     )
             .compose(
               _dio.options,
-              '/all',
+              '/all/${studentId}',
               queryParameters: queryParameters,
               data: _data,
             )

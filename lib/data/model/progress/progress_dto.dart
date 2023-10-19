@@ -5,8 +5,8 @@ part 'progress_dto.g.dart';
 @JsonSerializable()
 class ProgressDto {
   final int id;
-  final int studentId;
   final int courseId;
+  final int studentId;
   final int percentage;
 
   const ProgressDto({

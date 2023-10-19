@@ -8,6 +8,6 @@ part 'course_api.g.dart';
 abstract class CourseApi {
   factory CourseApi(final Dio dio, {String baseUrl}) = _CourseApi;
 
-  @GET("/all")
-  Future<List<GetCourseDto>> getAll();
+  @GET("/all/{studentId}")
+  Future<List<GetCourseDto>> getAll(@Path("studentId") final int studentId);
 }

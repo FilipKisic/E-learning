@@ -13,8 +13,8 @@ class CourseRepositoryImpl implements CourseRepository {
   );
 
   @override
-  Future<List<Course>> getAll() async {
-    final listOfCourseDtos = await api.getAll();
+  Future<List<Course>> getAll(final int studentId) async {
+    final listOfCourseDtos = await api.getAll(studentId);
     return listOfCourseDtos
         .map((courseDto) => getCourseDtoToCourseMapper.convert(courseDto))
         .toList();

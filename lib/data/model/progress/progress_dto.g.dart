@@ -16,7 +16,7 @@ ProgressDto _$ProgressDtoFromJson(Map<String, dynamic> json) => ProgressDto(
 Map<String, dynamic> _$ProgressDtoToJson(ProgressDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'studentId': instance.studentId,
       'courseId': instance.courseId,
+      'studentId': instance.studentId,
       'percentage': instance.percentage,
     };

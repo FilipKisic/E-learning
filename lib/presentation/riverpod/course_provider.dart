@@ -6,17 +6,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class CourseProvider extends ChangeNotifier {
   final GetAllCoursesUseCase getAllCoursesUseCase;
 
-  CourseProvider(this.getAllCoursesUseCase) {
-    getAll();
+  CourseProvider(this.getAllCoursesUseCase, int studentId) {
+    getAll(studentId);
   }
 
   AsyncValue<List<Course>>? courseList;
 
-  void getAll() async {
+  void getAll(final int studentId) async {
     courseList = const AsyncValue.loading();
     notifyListeners();
 
-    courseList = await AsyncValue.guard(() => getAllCoursesUseCase());
+    courseList = await AsyncValue.guard(() => getAllCoursesUseCase(studentId));
     notifyListeners();
   }
 }

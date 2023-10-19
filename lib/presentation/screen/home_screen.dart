@@ -11,7 +11,8 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final courseListState = ref.watch(courseProvider.select((provider) => provider.courseList))!;
+    final studentId = ref.watch(studentProvider.select((provider) => provider.currentStudentId));
+    final courseListState = ref.watch(courseProvider(studentId).select((provider) => provider.courseList))!;
 
     return Scaffold(
       body: SafeArea(
@@ -35,8 +36,9 @@ class HomeScreen extends ConsumerWidget {
                     : Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(top: 20),
-                          child: ListView.builder(
+                          child: ListView.separated(
                             itemCount: courseList.length,
+                            separatorBuilder: (_, index) => const SizedBox(height: 25),
                             itemBuilder: (context, index) => CourseCard(
                               course: courseList[index],
                             ),

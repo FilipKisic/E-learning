@@ -58,6 +58,6 @@ final studentProvider = ChangeNotifierProvider<StudentProvider>(
   (ref) => StudentProvider(ref.read(authUseCaseProvider)),
 );
 
-final courseProvider = ChangeNotifierProvider<CourseProvider>(
-  (ref) => CourseProvider(ref.watch(getAllCoursesUseCaseProvider)),
+final courseProvider = ChangeNotifierProvider.family<CourseProvider, int>(
+  (ref, id) => CourseProvider(ref.watch(getAllCoursesUseCaseProvider), id),
 );

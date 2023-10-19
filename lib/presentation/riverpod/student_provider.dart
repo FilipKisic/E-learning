@@ -8,6 +8,7 @@ class StudentProvider extends ChangeNotifier {
   StudentProvider(this.authUseCase);
 
   AsyncValue<bool>? loginState;
+  int currentStudentId = 1;
 
   void login(final String username, final String password) async {
     loginState = const AsyncValue.loading();
