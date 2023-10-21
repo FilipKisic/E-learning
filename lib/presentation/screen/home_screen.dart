@@ -60,7 +60,7 @@ class HomeScreen extends ConsumerWidget {
   void _redirectToNewQuizScreen(BuildContext context) =>
       Navigator.of(context).pushNamed(RouteGenerator.newQuizScreen);
 
-  void _deleteCourse(WidgetRef ref, final int courseId) {
-    ref.read(courseProvider(1)).delete(courseId, 1);
-  }
+
+  void _deleteCourse(final WidgetRef ref, final int courseId) =>
+      ref.read(courseProvider(1)).delete(courseId, 1);
 }

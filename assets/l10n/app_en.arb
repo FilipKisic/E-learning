@@ -16,5 +16,6 @@
     "title": "Title",
     "description": "Description",
     "addCourse": "Add course",
-    "create": "Create"
+    "create": "Create",
+    "update": "Update"
 }

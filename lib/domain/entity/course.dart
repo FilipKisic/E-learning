@@ -2,12 +2,12 @@ import 'package:flutter_e_learning/domain/entity/lecture.dart';
 
 class Course {
   final int? id;
-  final String title;
-  final String description;
+  String title;
+  String description;
   final int? progressPercentage;
   final List<Lecture>? lectures;
 
-  const Course({
+  Course({
     this.id,
     required this.title,
     required this.description,

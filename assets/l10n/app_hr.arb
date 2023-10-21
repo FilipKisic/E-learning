@@ -16,5 +16,6 @@
     "title": "Naslov",
     "description": "Opis",
     "addCourse": "Novi predmet",
-    "create": "Kreiraj"
+    "create": "Kreiraj",
+    "update": "Uredi"
 }
